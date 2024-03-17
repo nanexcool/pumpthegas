@@ -31,8 +31,10 @@
   <link rel="canonical" href="https://pumpthegas.org/" />
   <meta property="og:title" content="Pump the Gas" />
   <meta property="og:locale" content="en_US" />
-  <meta name="description" content="An effort to educate the Ethereum community about the gas limit and how it can be used to help improve Ethereum scaling." />
-  <meta property="og:description" content="An effort to educate the Ethereum community about the gas limit and how it can be used to help improve Ethereum scaling." />
+  <meta name="description"
+    content="An effort to educate the Ethereum community about the gas limit and how it can be used to help improve Ethereum scaling." />
+  <meta property="og:description"
+    content="An effort to educate the Ethereum community about the gas limit and how it can be used to help improve Ethereum scaling." />
   <meta property="og:url" content="https://pumpthegas.org/" />
   <meta property="og:site_name" content="Pump the Gas" />
   <meta property="og:type" content="website" />
@@ -66,16 +68,72 @@
       <p>Pump the gas is an effort to educate the Ethereum community about the gas limit and how it can be used to help
         improve Ethereum scaling.</p>
 
+      <h1 id="header-1">From Lord Vitalik</h1>
+
       <blockquote>
-        <p>Honestly, I think doing a <strong>modest gas limit increase even today is reasonable</strong>. The gas limit has not been
-          increased for nearly three years, which is the longest time ever in the protocol's history (that 2x bump in
-          the chart in late 2021 is "fake", in that it reflects the EIP-1559 transition, which increased the "limit" by
-          2x but only increased actual average usage by ~9%). And so splitting the post-2021 gains from Moore's law
-          50/50 between increased capacity and increased ease of syncing/verification would imply <strong>an increase to around
-            40M or so.</strong></p>
-        <p>Vitalik Buterin</p>
-        <p><a href="https://www.reddit.com/r/ethereum/comments/191kke6/comment/kh7ekx3/" target="_blank">from a Reddit AMA by Vitalik Buterin</a></p>
+        <p>I think doing a <strong>modest gas limit increase even today is reasonable</strong>. The gas limit
+          has not been increased for nearly three years... <strong>an increase to
+            around 40M or so.</strong></p>
+        <p>Vitalik Buterin <a href="https://www.reddit.com/r/ethereum/comments/191kke6/comment/kh7ekx3/"
+            target="_blank">from a Reddit
+            AMA</a></p>
       </blockquote>
+
+      <h2 id="header-2">What can I do?</h2>
+
+      <p>If you are a <strong>solo staker</strong> you can increase the gas limit today:</p>
+
+
+      <div class="row">
+        <div class="column">
+          <div style="padding-right: 10px;">
+            <h3 id="header-3">Consensus Client (externally produced blocks)</h3>
+            <div class="language-js highlighter-rouge">
+              <div class="highlight">
+<pre class="highlight"><code><span class="c1"># Lighthouse VC</span>
+<span class="kd">--gas-limit</span> <span class="nx">40000000</span>
+
+<span class="c1"># Lodestar</span>
+<span class="kd">--defaultGasLimit</span> <span class="nx">40000000</span>
+
+<span class="c1"># Nimbus</span>
+<span class="kd">--suggested-gas-limit</span> <span class="nx">40000000</span>
+
+<span class="c1"># Prysm</span>
+<span class="kd">--suggested-gas-limit</span> <span class="nx">40000000</span>
+
+<span class="c1"># Teku (modify teku.yaml)</span>
+<span class="kd">validators-proposer-default-gas-limit:</span> <span class="nx">40000000</span>
+</code></pre>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="column">
+          <h3 id="header-3">Execution Client (locally produced blocks)</h3>
+          <div class="language-js highlighter-rouge">
+            <div class="highlight">
+<pre class="highlight"><code><span class="c1"># Besu</span>
+<span class="kd">--target-gas-limit</span> <span class="nx">40000000</span>
+
+<span class="c1"># Erigon</span>
+<span class="kd">--miner.gaslimit</span> <span class="nx">40000000</span>
+
+<span class="c1"># Geth</span>
+<span class="kd">--miner.gaslimit</span> <span class="nx">40000000</span>
+
+<span class="c1"># Nethermind</span>
+<span class="kd">--Blocks.TargetBlockGasLimit</span> <span class="nx">40000000</span>
+
+<span class="c1"># Reth</span>
+<span class="kd">--builder.gaslimit</span> <span class="nx">40000000</span>
+</code></pre>
+            </div>
+          </div>
+        </div>
+      </div>
+      <p>Source: <a target="_blank" href="https://twitter.com/MKjrstad/status/1656549642140614658">this random tweet lol</a> </p>
+      <hr />
 
       <h2 id="header-2">What is the gas block limit?</h2>
       <p>Understanding 'gas' is fundamental to understanding how the Ethereum network functions.</p>
@@ -153,13 +211,18 @@
       <p>If you're a validator, you can set flags on your execution clients and consensus clients to signal that you'd
         like to raise the gas limit. Please see below for these flags.</p>
 
-      <p>If you are not a validator, you can help by signalling your social support and spreading our effort on twitter.
-        Use the hashtag #pumpthegas.</p>
+      <p>If you are not a validator, you can help by signaling your social support and spreading our effort on twitter
+        or farcaster.
+        Use the hashtag <a target="_blank"
+          href="https://twitter.com/intent/post?text=I%20support%20raising%20the%20gas%20block%20limit%20to%2040m%20%23pumpthegas">#pumpthegas</a>
+      </p>
 
       <h2 id="header-2">What flags should I set?</h2>
       <p>TODO</p>
 
       <!-- https://ethresear.ch/t/on-block-sizes-gas-limits-and-scalability/18444 -->
+
+      <hr />
 
       <div class="language-plaintext highlighter-rouge">
         <div class="highlight">
