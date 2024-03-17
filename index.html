@@ -72,7 +72,7 @@
 
       <blockquote>
         <p>I think doing a <strong>modest gas limit increase even today is reasonable</strong>. The gas limit
-          has not been increased for nearly three years... <strong>an increase to
+          has not been increased for nearly three years[...]. <strong>an increase to
             around 40M or so.</strong></p>
         <p>Vitalik Buterin <a href="https://www.reddit.com/r/ethereum/comments/191kke6/comment/kh7ekx3/"
             target="_blank">from a Reddit
@@ -133,6 +133,48 @@
         </div>
       </div>
       <p>Source: <a target="_blank" href="https://twitter.com/MKjrstad/status/1656549642140614658">this random tweet lol</a> </p>
+      <hr />
+
+      <h2 id="header-2">Check your validator</h2>
+
+      <p>Check if your validator is signaling for the gas limit increase:</p>
+
+<form style="margin-top: 20px;">
+  <input type="text" id="validatorInput" placeholder="Enter validator address (0x....)" style="padding: 10px; width: 400px; border: 1px solid #ccc; border-radius: 4px;" />
+
+  <script>
+    document.getElementById("validatorInput").addEventListener("keydown", function(event) {
+      if (event.key === "Enter") {
+        event.preventDefault();
+        checkValidator();
+      }
+    });
+  </script>
+  <button type="button" onclick="checkValidator()" style="padding: 10px 20px; background-color: #4CAF50; color: white; border: none; border-radius: 4px; cursor: pointer;">Submit</button>
+  <div id="validatorCheckResult"></div>
+</form>
+
+<script>
+  function checkValidator() {
+    const validator = document.getElementById("validatorInput").value;
+    const url = `https://api.allorigins.win/raw?url=https://boost-relay.flashbots.net/relay/v1/data/validator_registration?pubkey=${validator}`;
+
+    fetch(url)
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data)
+        const gasLimit = data.message.gas_limit;
+        const validatorCheckResult = document.getElementById("validatorCheckResult");
+        if (gasLimit === "40000000") {
+          validatorCheckResult.textContent = "Congratulations, your gas limit is set to 40,000,000. You are helping Ethereum scale!";
+        } else {
+          validatorCheckResult.textContent = `Your gas limit is ${gasLimit}, you should consider changing it to 40,000,000 to help Ethereum scale.`;
+        }
+      });
+    }
+</script>
+      
+
       <hr />
 
       <h2 id="header-2">What is the gas block limit?</h2>
