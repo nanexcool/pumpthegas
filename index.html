@@ -6,27 +6,16 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="style.css">
-  <!-- start custom head snippets, customize with your own _includes/head-custom.html file -->
-
-  <!-- Setup theme-color -->
-  <!-- start theme color meta headers -->
   <meta name="theme-color" content="#151515">
   <meta name="msapplication-navbutton-color" content="#151515">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <!-- end theme color meta headers -->
 
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
 
-  <!-- Setup Google Analytics -->
-
-
-
-  <!-- You can set your favicon here -->
-  <!-- link rel="shortcut icon" type="image/x-icon" href="/hacker/favicon.ico" -->
-
-  <!-- end custom head snippets -->
-
-
-  <!-- Begin Jekyll SEO tag v2.8.0 -->
   <title>Pump the Gas</title>
   <link rel="canonical" href="https://pumpthegas.org/" />
   <meta property="og:title" content="Pump the Gas" />
@@ -50,7 +39,12 @@
       <a id="a-title" href="/">
         <h1>pump the gas</h1>
       </a>
-      <h2>help scale Ethereum today</h2>
+      <h2 id="subtitle">help scale Ethereum today</h2>
+      <script>
+        if (Math.random() < 0.33) {
+          document.getElementById("subtitle").textContent = "40m is the new 30m";
+        }
+      </script>
 
       <!-- <section id="downloads">
 
@@ -66,9 +60,10 @@
   <div class="container">
     <section id="main_content">
       <p>Pump the gas is an effort to educate the Ethereum community about the gas limit and how it can be used to help
-        improve Ethereum scaling.</p>
-
-      <h1 id="header-1">From Lord Vitalik</h1>
+        <strong>improve Ethereum scaling</strong>. Signaling your social support and spread our effort on twitter
+        or farcaster.
+        Use the hashtag <a target="_blank"
+            href="https://twitter.com/intent/post?text=I%20support%20raising%20the%20gas%20limit%20to%2040m%20%23pumpthegas%20https%3A%2F%2Fpumpthegas.org">#pumpthegas</a></p>
 
       <blockquote>
         <p>I think doing a <strong>modest gas limit increase even today is reasonable</strong>. The gas limit
@@ -79,10 +74,14 @@
             AMA</a></p>
       </blockquote>
 
-      <h2 id="header-2">What can I do?</h2>
+      <a id="solo-stakers"><h1 id="header-1">SOLO STAKERS - What you can do</h1></a>
 
-      <p>If you are a <strong>solo staker</strong> you can increase the gas limit today:</p>
+      <p>If you are a <strong>solo staker</strong> you can increase the gas limit today by adding a flag to your client
+        configuration.</p>
 
+      <p>If you use <strong>Dappnode</strong> you can go to <code
+          class="language-plaintext highlighter-rouge">your client package > config > show advanced editor > EXTRA_OPTS</code>
+      </p>
 
       <div class="row">
         <div class="column">
@@ -90,7 +89,7 @@
             <h3 id="header-3">Consensus Client (externally produced blocks)</h3>
             <div class="language-js highlighter-rouge">
               <div class="highlight">
-<pre class="highlight"><code><span class="c1"># Lighthouse VC</span>
+                <pre class="highlight"><code><span class="c1"># Lighthouse VC</span>
 <span class="kd">--gas-limit</span> <span class="nx">40000000</span>
 
 <span class="c1"># Lodestar</span>
@@ -113,7 +112,7 @@
           <h3 id="header-3">Execution Client (locally produced blocks)</h3>
           <div class="language-js highlighter-rouge">
             <div class="highlight">
-<pre class="highlight"><code><span class="c1"># Besu</span>
+              <pre class="highlight"><code><span class="c1"># Besu</span>
 <span class="kd">--target-gas-limit</span> <span class="nx">40000000</span>
 
 <span class="c1"># Erigon</span>
@@ -132,51 +131,110 @@
           </div>
         </div>
       </div>
-      <p>Source: <a target="_blank" href="https://twitter.com/MKjrstad/status/1656549642140614658">this random tweet lol</a> </p>
+      <p>After changing your configuration, you should restart your client.</p>
+      <p><a target="_blank" href="https://twitter.com/MKjrstad/status/1656549642140614658">Source</a></p>
       <hr />
 
-      <h2 id="header-2">Check your validator</h2>
+      <h2 id="header-2">Validator Check</h2>
 
-      <p>Check if your validator is signaling for the gas limit increase:</p>
+      <p>Check if a validator is ready for the gas limit increase:</p>
 
-<form style="margin-top: 20px;">
-  <input type="text" id="validatorInput" placeholder="Enter validator address (0x....)" style="padding: 10px; width: 400px; border: 1px solid #ccc; border-radius: 4px;" />
-  <button type="button" onclick="checkValidator()" style="padding: 10px 20px; background-color: #b5e853; color: #333; border: none; border-radius: 4px; cursor: pointer;">Check</button>
-  <div id="validatorCheckResult"></div>
-</form>
+      <form style="margin-top: 20px;">
+        <input type="text" id="validatorInput" placeholder="Enter validator address (0x....)"
+          style="padding: 10px; width: 400px; border: 1px solid #ccc; border-radius: 4px;" />
+        <button type="button" onclick="checkValidator()"
+          style="padding: 10px 20px; background-color: #b5e853; color: #333; border: none; border-radius: 4px; cursor: pointer;">Check</button>
+        <div id="validatorCheckResult"></div>
+      </form>
 
-<script>
-   document.getElementById("validatorInput").addEventListener("keydown", function(event) {
-      if (event.key === "Enter") {
-        event.preventDefault();
-        checkValidator();
-      }
-    });
-  function checkValidator() {
-    const validator = document.getElementById("validatorInput").value;
-    const url = `https://api.allorigins.win/raw?url=https://boost-relay.flashbots.net/relay/v1/data/validator_registration?pubkey=${validator}`;
+      <script>
+        document.getElementById("validatorInput").addEventListener("keydown", function (event) {
+          if (event.key === "Enter") {
+            event.preventDefault();
+            checkValidator();
+          }
+        });
+        function checkValidator() {
 
-    fetch(url)
-      .then((response) => response.json())
-      .then((data) => {
-        console.log(data)
-        const gasLimit = data.message.gas_limit;
-        const validatorCheckResult = document.getElementById("validatorCheckResult");
-        if (gasLimit === "40000000") {
-          validatorCheckResult.textContent = "Congratulations, your gas limit is set to 40000000. You are helping Ethereum scale!";
-        } else if (data.code === 400) {
-          validatorCheckResult.textContent = "Not a valid validator.";
-        } else {
-          validatorCheckResult.textContent = `Your gas limit is ${gasLimit}, you should consider changing it to 40000000 to help Ethereum scale.`;
+          const relayers = [
+            {
+              name: "Aestus Live",
+              url: "https://mainnet.aestus.live/"
+            },
+            {
+              name: "Agnostic Relay",
+              url: "https://agnostic-relay.net/"
+            },
+            {
+              name: "Bloxroute Max Profit",
+              url: "https://bloxroute.max-profit.blxrbdn.com/"
+            },
+            {
+              name: "Bloxroute Regulated",
+              url: "https://bloxroute.regulated.blxrbdn.com/"
+            },
+            {
+              name: "Eden Network",
+              url: "https://relay.edennetwork.io/info"
+            },
+            {
+              name: "Flashbots Boost Relay",
+              url: "https://boost-relay.flashbots.net/"
+            },
+            {
+              name: "Securerpc",
+              url: "https://mainnet-relay.securerpc.com/"
+            }
+          ];
+          const validator = document.getElementById("validatorInput").value;
+
+          const validatorCheckResult = document.getElementById("validatorCheckResult");
+
+          if (validator.length === 98 && validator.startsWith("0x") && /^[0-9a-fA-F]+$/.test(validator.slice(2))) {
+            // Input is valid, proceed with the code
+            relayers.forEach((relayer) => {
+              const url = `https://api.allorigins.win/raw?url=${relayer.url}/relay/v1/data/validator_registration?pubkey=${validator}`;
+
+              fetch(url)
+                .then((response) => response.json())
+                .then((data) => {
+                  console.log(data);
+                  const gasLimit = data.message.gas_limit;
+
+                  if (gasLimit === "40000000") {
+                    validatorCheckResult.textContent += `Gas limit is set to 40000000 on ${relayer.name}.<br />`;
+                  } else if (data.code === 400) {
+                    validatorCheckResult.textContent += `${data.message} on ${relayer.name}<br />`;
+                  } else {
+                    validatorCheckResult.textContent += `Gas limit is ${gasLimit} on ${relayer.name}, change it to 40000000 please.<br />`;
+                  }
+                });
+            });
+          } else {
+            // Input is invalid, display an error message
+            validatorCheckResult.textContent = "Please enter a valid Ethereum validator address.";
+          }
+
         }
-      });
-    }
-</script>
-      
+
+      </script>
+
 
       <hr />
 
-      <h2 id="header-2">What is the gas block limit?</h2>
+      <h1 id="header-1">CLIENT TEAMS - What you can do</h1>
+
+      <p>Increase the gas limit to <code class="language-plaintext highlighter-rouge">40000000</code> in your client so it's the default in future releases.
+        This will by far be the most effective way to make sure everyone is running clients with this configuration.</p>
+
+      <h1 id="header-1">BIG POOLS - What you can do</h1>
+
+      <p>Increase the gas limit to <code class="language-plaintext highlighter-rouge">40000000</code> in all your clients.</p>
+
+      <hr />
+
+      <h1 id="header-1">FAQ</h1>
+      <h3 id="header-3">What is the gas block limit?</h3>
       <p>Understanding 'gas' is fundamental to understanding how the Ethereum network functions.</p>
 
       <p>The EVM - the Ethereum Virtual Machine (EVM) running on each Ethereum node - is an emulation of a computer
@@ -227,39 +285,30 @@
         </tr>
       </table>
 
-      <h2 id="header-2">What is the curent gas block limit?</h2>
+      <h3 id="header-3">What is the curent gas block limit?</h3>
 
       <p><code class="language-plaintext highlighter-rouge">30,000,000</code></p>
 
-      <h2 id="header-2">What are we targetting for the new gas block limit?</h2>
+      <h3 id="header-3">What are we targetting for the new gas block limit?</h3>
 
       <p><code class="language-plaintext highlighter-rouge">40,000,000</code></p>
 
-      <h2 id="header-2">Why this target specifically?</h2>
+      <h3 id="header-3">Why this target specifically?</h3>
       <p>After discussion with multiple community stakeholders, this feels like a reasonable amount to raise the limit
         without putting the network at risk.</p>
 
-      <h2 id="header-2">How does this help Ethereum?</h2>
+      <h3 id="header-3">How does this help Ethereum?</h3>
       <p>Raising the gas block limit 33% gives Layer 1 Ethereum the ability to process 33% more transactions in a day.
         This has the potential to lower gas fees on L1.</p>
 
-      <h2 id="header-2">What about blobs?</h2>
+      <h3 id="header-3">What about blobs?</h3>
       <p>Blobs (EIP-4844) help Layer 2 transaction fees, not Layer 1 transaction fees. While this is great, we think a
         combination of blobs + increased gas limit + future EIPs such as 7623 and 4444 can be a nice combination for
         across the board scalability improvements.</p>
 
-      <h2 id="header-2">I'm in, how can I help?</h2>
+      <h3 id="header-3">I'm in, how can I help?</h3>
       <p>If you're a validator, you can set flags on your execution clients and consensus clients to signal that you'd
-        like to raise the gas limit. Please see below for these flags.</p>
-
-      <p>If you are not a validator, you can help by signaling your social support and spreading our effort on twitter
-        or farcaster.
-        Use the hashtag <a target="_blank"
-          href="https://twitter.com/intent/post?text=I%20support%20raising%20the%20gas%20block%20limit%20to%2040m%20%23pumpthegas">#pumpthegas</a>
-      </p>
-
-      <h2 id="header-2">What flags should I set?</h2>
-      <p>TODO</p>
+        like to raise the gas limit. <a href="#solo-stakers">Please see above for these flags.</a></p>
 
       <!-- https://ethresear.ch/t/on-block-sizes-gas-limits-and-scalability/18444 -->
 
@@ -268,6 +317,8 @@
       <div class="language-plaintext highlighter-rouge">
         <div class="highlight">
           <pre class="highlight"><code>pumpthegas.org
+
+Made by @econoar & @nanexcool
 </code></pre>
         </div>
       </div>
