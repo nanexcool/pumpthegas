@@ -60,10 +60,11 @@
   <div class="container">
     <section id="main_content">
       <p>Pump the gas is an effort to educate the Ethereum community about the gas limit and how it can be used to help
-        <strong>improve Ethereum scaling</strong>. Signaling your social support and spread our effort on twitter
+        <strong>improve Ethereum scaling</strong>. Signal your social support and spread our effort on twitter
         or farcaster.
         Use the hashtag <a target="_blank"
-            href="https://twitter.com/intent/post?text=I%20support%20raising%20the%20gas%20limit%20to%2040m%20%23pumpthegas%20https%3A%2F%2Fpumpthegas.org">#pumpthegas</a></p>
+          href="https://twitter.com/intent/post?text=I%20support%20raising%20the%20gas%20limit%20to%2040m%20%23pumpthegas%20https%3A%2F%2Fpumpthegas.org">#pumpthegas</a>
+      </p>
 
       <blockquote>
         <p>I think doing a <strong>modest gas limit increase even today is reasonable</strong>. The gas limit
@@ -74,7 +75,9 @@
             AMA</a></p>
       </blockquote>
 
-      <a id="solo-stakers"><h1 id="header-1">SOLO STAKERS - What you can do</h1></a>
+      <a id="solo-stakers">
+        <h1 id="header-1">SOLO STAKERS - What you can do</h1>
+      </a>
 
       <p>If you are a <strong>solo staker</strong> you can increase the gas limit today by adding a flag to your client
         configuration.</p>
@@ -96,7 +99,7 @@
 <span class="kd">--defaultGasLimit</span> <span class="nx">40000000</span>
 
 <span class="c1"># Nimbus</span>
-<span class="kd">--suggested-gas-limit</span> <span class="nx">40000000</span>
+<span class="kd">--suggested-gas-limit</span><span class="o">=</span><span class="nx">40000000</span>
 
 <span class="c1"># Prysm</span>
 <span class="kd">--suggested-gas-limit</span> <span class="nx">40000000</span>
@@ -140,7 +143,7 @@
       <p>Check if a validator is ready for the gas limit increase:</p>
 
       <form style="margin-top: 20px;">
-        <input type="text" id="validatorInput" placeholder="Enter validator address (0x....)"
+        <input type="text" id="validatorInput" placeholder="Enter validator address (0x....)" value="0xafce801feab7e258857ba905f64cf2a15e8a19d727a07917330f7b0dbc2ffcca231505e0bb4247d269187897cf7b9a39"
           style="padding: 10px; width: 400px; border: 1px solid #ccc; border-radius: 4px;" />
         <button type="button" onclick="checkValidator()"
           style="padding: 10px 20px; background-color: #b5e853; color: #333; border: none; border-radius: 4px; cursor: pointer;">Check</button>
@@ -175,7 +178,7 @@
             },
             {
               name: "Eden Network",
-              url: "https://relay.edennetwork.io/info"
+              url: "https://relay.edennetwork.io/"
             },
             {
               name: "Flashbots Boost Relay",
@@ -199,11 +202,13 @@
                 .then((response) => response.json())
                 .then((data) => {
                   console.log(data);
-                  const gasLimit = data.message.gas_limit;
+                  const gasLimit = data.message?.gas_limit ?? data.Message?.gas_limit;
 
                   if (gasLimit === "40000000") {
                     validatorCheckResult.textContent += `Gas limit is set to 40000000 on ${relayer.name}.<br />`;
                   } else if (data.code === 400) {
+                    validatorCheckResult.textContent += `${data.message} on ${relayer.name}<br />`;
+                  } else if (data.code === 404) {
                     validatorCheckResult.textContent += `${data.message} on ${relayer.name}<br />`;
                   } else {
                     validatorCheckResult.textContent += `Gas limit is ${gasLimit} on ${relayer.name}, change it to 40000000 please.<br />`;
@@ -224,12 +229,14 @@
 
       <h1 id="header-1">CLIENT TEAMS - What you can do</h1>
 
-      <p>Increase the gas limit to <code class="language-plaintext highlighter-rouge">40000000</code> in your client so it's the default in future releases.
+      <p>Increase the gas limit to <code class="language-plaintext highlighter-rouge">40000000</code> in your client so
+        it's the default in future releases.
         This will by far be the most effective way to make sure everyone is running clients with this configuration.</p>
 
       <h1 id="header-1">BIG POOLS - What you can do</h1>
 
-      <p>Increase the gas limit to <code class="language-plaintext highlighter-rouge">40000000</code> in all your clients.</p>
+      <p>Increase the gas limit to <code class="language-plaintext highlighter-rouge">40000000</code> in all your
+        clients.</p>
 
       <hr />
 
@@ -314,11 +321,14 @@
 
       <hr />
 
+      <h4>Further Reading</h4>
+      <p><a target="_blank" href="https://www.paradigm.xyz/2024/03/how-to-raise-the-gas-limit-1">Paradigm - How to Raise
+          the Gas Limit, Part 1: State Growth</a></p>
       <div class="language-plaintext highlighter-rouge">
         <div class="highlight">
           <pre class="highlight"><code>pumpthegas.org
 
-Made by @econoar & @nanexcool
+Made by <a target="_blank" href="https://twitter.com/econoar">@econoar</a> & <a target="_blank" href="https://twitter.com/nanexcool">@nanexcool</a>
 </code></pre>
         </div>
       </div>
