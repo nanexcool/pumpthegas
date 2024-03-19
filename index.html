@@ -158,7 +158,9 @@
           }
         });
         function checkValidator() {
-
+          const validatorCheckResult = document.getElementById("validatorCheckResult");
+          validatorCheckResult.textContent = "";
+          
           const relayers = [
             {
               name: "Aestus Live",
@@ -191,8 +193,6 @@
           ];
           const validator = document.getElementById("validatorInput").value;
 
-          const validatorCheckResult = document.getElementById("validatorCheckResult");
-
           if (validator.length === 98 && validator.startsWith("0x") && /^[0-9a-fA-F]+$/.test(validator.slice(2))) {
             // Input is valid, proceed with the code
             relayers.forEach((relayer) => {
@@ -205,13 +205,13 @@
                   const gasLimit = data.message?.gas_limit ?? data.Message?.gas_limit;
 
                   if (gasLimit === "40000000") {
-                    validatorCheckResult.textContent += `Gas limit is set to 40000000 on ${relayer.name}.<br />`;
+                    validatorCheckResult.innerHTML += `${relayer.name} - 40,000,000!<br />`;
                   } else if (data.code === 400) {
-                    validatorCheckResult.textContent += `${data.message} on ${relayer.name}<br />`;
+                    validatorCheckResult.innerHTML += `${relayer.name} - ${data.message}<br />`;
                   } else if (data.code === 404) {
-                    validatorCheckResult.textContent += `${data.message} on ${relayer.name}<br />`;
+                    validatorCheckResult.innerHTML += `${relayer.name} - not registered<br />`;
                   } else {
-                    validatorCheckResult.textContent += `Gas limit is ${gasLimit} on ${relayer.name}, change it to 40000000 please.<br />`;
+                    validatorCheckResult.innerHTML += `${relayer.name} - ${gasLimit}<br />`;
                   }
                 });
             });
