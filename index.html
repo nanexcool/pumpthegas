@@ -143,7 +143,7 @@
       <p>Check if a validator is ready for the gas limit increase:</p>
 
       <form style="margin-top: 20px;">
-        <input type="text" id="validatorInput" placeholder="Enter validator address (0x....)" value="0x87f9cc96ea3b3b020556559b04af647c0f9f12e2e7331e47cc39226509b8b79b0c54ca7d676423e8fa52e90fe2c2245e"
+        <input type="text" id="validatorInput" placeholder="Enter validator address (0x....)"
           style="padding: 10px; width: 400px; border: 1px solid #ccc; border-radius: 4px;" />
         <button type="button" onclick="checkValidator()"
           style="padding: 10px 20px; background-color: #b5e853; color: #333; border: none; border-radius: 4px; cursor: pointer;">Check</button>
@@ -160,7 +160,7 @@
         function checkValidator() {
           const validatorCheckResult = document.getElementById("validatorCheckResult");
           validatorCheckResult.textContent = "";
-          
+
           const relayers = [
             {
               name: "Aestus Live",
@@ -196,7 +196,7 @@
           if (validator.length === 98 && validator.startsWith("0x") && /^[0-9a-fA-F]+$/.test(validator.slice(2))) {
             // Input is valid, proceed with the code
             relayers.forEach((relayer) => {
-              const url = `https://api.allorigins.win/raw?url=${relayer.url}/relay/v1/data/validator_registration?pubkey=${validator}`;
+              const url = `https://api.allorigins.win/raw?url=${relayer.url}relay/v1/data/validator_registration?pubkey=${validator}`;
 
               fetch(url)
                 .then((response) => response.json())
@@ -204,11 +204,11 @@
                   console.log(data);
                   const gasLimit = data.message?.gas_limit ?? data.Message?.gas_limit;
 
+                  const message = data.message || data.Message || "";
+
                   if (gasLimit === "40000000") {
                     validatorCheckResult.innerHTML += `${relayer.name} - 40,000,000!<br />`;
-                  } else if (data.code === 400) {
-                    validatorCheckResult.innerHTML += `${relayer.name} - ${data.message}<br />`;
-                  } else if (data.code === 404) {
+                  } else if (data.code === 400 || data.code === 404) {
                     validatorCheckResult.innerHTML += `${relayer.name} - not registered<br />`;
                   } else {
                     validatorCheckResult.innerHTML += `${relayer.name} - ${gasLimit}<br />`;
@@ -256,10 +256,6 @@
         an infinite loop, each loop would consume some gas and eventually run into the limit, at which point the EVM
         would abort the execution of this contract. Essentially, the larger, more complex the contract and the more
         operations it performs, the more expensive it is to run it.</p>
-
-      <p>This process creates a fee market using gas prices where users decide how much they are willing to pay for each
-        unit of gas. Due to the gas block limit, the fee market almost always determines what order transactions are
-        mined in because miners looking to profit will select the transactions with the highest fees.</p>
 
       <p>There are many key components to a transaction that are important to understand:</p>
 
@@ -317,18 +313,20 @@
       <p>If you're a validator, you can set flags on your execution clients and consensus clients to signal that you'd
         like to raise the gas limit. <a href="#solo-stakers">Please see above for these flags.</a></p>
 
-      <!-- https://ethresear.ch/t/on-block-sizes-gas-limits-and-scalability/18444 -->
-
       <hr />
 
       <h4>Further Reading</h4>
       <p><a target="_blank" href="https://www.paradigm.xyz/2024/03/how-to-raise-the-gas-limit-1">Paradigm - How to Raise
           the Gas Limit, Part 1: State Growth</a></p>
+      <p><a target="_blank" href="https://ethresear.ch/t/on-block-sizes-gas-limits-and-scalability/18444">Ethereum
+          Research - On Block Sizes, Gas Limits and Scalability</a></p>
       <div class="language-plaintext highlighter-rouge">
         <div class="highlight">
           <pre class="highlight"><code>pumpthegas.org
 
-Made by <a target="_blank" href="https://twitter.com/econoar">@econoar</a> & <a target="_blank" href="https://twitter.com/nanexcool">@nanexcool</a>
+Made by <a target="_blank" href="https://twitter.com/econoar">@econoar</a> & <a target="_blank" href="https://twitter.com/nanexcool">@nanexcool</a> (who loves big blocks and loves you)
+
+Mariano wants you to <a target="_blank" href="https://github.com/nanexcool/pumpthegas">send a PR to make this website prettier please</a>
 </code></pre>
         </div>
       </div>
