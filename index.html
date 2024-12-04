@@ -47,7 +47,7 @@
       <h2 id="subtitle">help scale Ethereum today</h2>
       <script>
         if (Math.random() < 0.33) {
-          document.getElementById("subtitle").textContent = "40m is the new 30m";
+          document.getElementById("subtitle").textContent = "60m is the new 30m";
         }
       </script>
 
@@ -110,19 +110,19 @@
             <div class="language-js highlighter-rouge">
               <div class="highlight">
                 <pre class="highlight"><code><span class="c1"># Lighthouse (validator client)</span>
-<span class="kd">--gas-limit</span> <span class="nx">40000000</span>
+<span class="kd">--gas-limit</span> <span class="nx">60000000</span>
 
 <span class="c1"># Lodestar (validator client)</span>
-<span class="kd">--defaultGasLimit</span> <span class="nx">40000000</span>
+<span class="kd">--defaultGasLimit</span> <span class="nx">60000000</span>
 
 <span class="c1"># Nimbus</span>
-<span class="kd">--suggested-gas-limit</span><span class="o">=</span><span class="nx">40000000</span>
+<span class="kd">--suggested-gas-limit</span><span class="o">=</span><span class="nx">60000000</span>
 
 <span class="c1"># Prysm (validator client)</span>
-<span class="kd">--suggested-gas-limit</span> <span class="nx">40000000</span>
+<span class="kd">--suggested-gas-limit</span> <span class="nx">60000000</span>
 
 <span class="c1"># Teku</span>
-<span class="kd">--Xvalidators-builder-registration-default-gas-limit</span> <span class="nx">40000000</span>
+<span class="kd">--Xvalidators-builder-registration-default-gas-limit</span> <span class="nx">60000000</span>
 </code></pre>
               </div>
             </div>
@@ -133,19 +133,19 @@
           <div class="language-js highlighter-rouge">
             <div class="highlight">
               <pre class="highlight"><code><span class="c1"># Besu</span>
-<span class="kd">--target-gas-limit</span> <span class="nx">40000000</span>
+<span class="kd">--target-gas-limit</span> <span class="nx">60000000</span>
 
 <span class="c1"># Erigon</span>
-<span class="kd">--miner.gaslimit</span> <span class="nx">40000000</span>
+<span class="kd">--miner.gaslimit</span> <span class="nx">60000000</span>
 
 <span class="c1"># Geth</span>
-<span class="kd">--miner.gaslimit</span> <span class="nx">40000000</span>
+<span class="kd">--miner.gaslimit</span> <span class="nx">60000000</span>
 
 <span class="c1"># Nethermind</span>
-<span class="kd">--Blocks.TargetBlockGasLimit</span> <span class="nx">40000000</span>
+<span class="kd">--Blocks.TargetBlockGasLimit</span> <span class="nx">60000000</span>
 
 <span class="c1"># Reth</span>
-<span class="kd">--builder.gaslimit</span> <span class="nx">40000000</span>
+<span class="kd">--builder.gaslimit</span> <span class="nx">60000000</span>
 </code></pre>
             </div>
           </div>
@@ -227,7 +227,7 @@
 
                   const message = data.message || data.Message || "";
 
-                  if (gasLimit === "40000000") {
+                  if (gasLimit === "60000000") {
                     validatorCheckResult.innerHTML += `${relayer.name} - 40,000,000!<br />`;
                   } else if (data.code === 400 || data.code === 404) {
                     validatorCheckResult.innerHTML += `${relayer.name} - not registered<br />`;
@@ -250,13 +250,13 @@
 
       <h1 id="header-1">CLIENT TEAMS - What you can do</h1>
 
-      <p>Increase the gas limit to <code class="language-plaintext highlighter-rouge">40000000</code> in your client so
+      <p>Increase the gas limit to <code class="language-plaintext highlighter-rouge">60000000</code> in your client so
         it's the default in future releases.
         This will by far be the most effective way to make sure everyone is running clients with this configuration.</p>
 
       <h1 id="header-1">BIG POOLS - What you can do</h1>
 
-      <p>Increase the gas limit to <code class="language-plaintext highlighter-rouge">40000000</code> in all your
+      <p>Increase the gas limit to <code class="language-plaintext highlighter-rouge">60000000</code> in all your
         clients.</p>
 
       <hr />
@@ -354,7 +354,7 @@
 
       <p>You can view the latest blocks with a gas limit over 30M over at
         <a target="_blank"
-          href="https://blockchair.com/ethereum/blocks?s=id(desc)&q=gas_limit(30000001..40000000)">Blockchair.</a>
+          href="https://blockchair.com/ethereum/blocks?s=id(desc)&q=gas_limit(30000001..100000000)">Blockchair.</a>
       </p>
 
       <h3 id="header-3">I'm in, how can I help?</h3>
