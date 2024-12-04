@@ -227,9 +227,7 @@
 
                   const message = data.message || data.Message || "";
 
-                  if (gasLimit === "60000000") {
-                    validatorCheckResult.innerHTML += `${relayer.name} - 40,000,000!<br />`;
-                  } else if (data.code === 400 || data.code === 404) {
+                  if (data.code === 400 || data.code === 404) {
                     validatorCheckResult.innerHTML += `${relayer.name} - not registered<br />`;
                   } else {
                     validatorCheckResult.innerHTML += `${relayer.name} - ${gasLimit}<br />`;
