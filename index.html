@@ -153,8 +153,8 @@
       </div>
       <p>After changing your configuration, you should restart your client.</p>
       <p><a target="_blank" href="https://twitter.com/MKjrstad/status/1656549642140614658">Source</a></p>
-      <hr />
 
+      <div class="card">
       <h2 id="header-2">Validator Check</h2>
 
       <p>Check if a validator is ready for the gas limit increase:</p>
@@ -162,10 +162,10 @@
       <form style="margin-top: 20px;">
         <input type="text" id="validatorInput" placeholder="Enter validator address (0x....)"
           style="padding: 10px; width: 400px; border: 1px solid #ccc; border-radius: 4px;" />
-        <button type="button" onclick="checkValidator()"
-          style="padding: 10px 20px; background-color: #b5e853; color: #333; border: none; border-radius: 4px; cursor: pointer;">Check</button>
+        <button class="checkBtn" type="button" onclick="checkValidator()">Check</button>
         <div id="validatorCheckResult"></div>
       </form>
+      </div>
 
       <script>
         document.getElementById("validatorInput").addEventListener("keydown", function (event) {
@@ -366,7 +366,7 @@
           the Gas Limit, Part 1: State Growth</a></p>
       <p><a target="_blank" href="https://ethresear.ch/t/on-block-sizes-gas-limits-and-scalability/18444">Ethereum
           Research - On Block Sizes, Gas Limits and Scalability</a></p>
-      <div class="language-plaintext highlighter-rouge">
+      <div class="card language-plaintext highlighter-rouge">
         <div class="highlight">
           <pre class="highlight"><code>pumpthegas.org
 
