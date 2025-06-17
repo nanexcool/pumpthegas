@@ -44,12 +44,20 @@
       <a id="a-title" href="/">
         <h1>pump the gas</h1>
       </a>
-      <h2 id="subtitle">help scale Ethereum today</h2>
-      <script>
-        if (Math.random() < 0.2) {
-          document.getElementById("subtitle").textContent = "60m is the new 36m";
-        }
-      </script>
+      <h2 id="subtitle">🎯 60M is the new 36M | vote with your validator</h2>
+
+      <div class="gas-tracker">
+        <div class="gas-summary">
+          <p>Current gas limit: <strong id="current-gas-limit">Loading...</strong> → <strong>Target: 60M</strong></p>
+          <p id="remaining-text">Only <strong>24M</strong> more—every block you produce is a ballot.</p>
+        </div>
+        
+        <div class="quick-actions">
+          <p>👩‍💻 Run a validator? Set your gas limit to 60M in your client config—see flags below.</p>
+          <p>📊 Watch the meter rise: <a href="https://gaslimit.pics" target="_blank"><strong>gaslimit.pics</strong></a></p>
+          <p>📢 Spread the word: with <strong>#pumpthegas</strong></p>
+        </div>
+      </div>
 
       <!-- <section id="downloads">
 
@@ -254,6 +262,69 @@
 
         }
 
+      </script>
+
+      <script>
+        // Fetch current Ethereum gas limit
+        async function fetchCurrentGasLimit() {
+          const endpoints = [
+            'https://eth.llamarpc.com',
+            'https://ethereum.publicnode.com',
+            'https://rpc.ankr.com/eth'
+          ];
+
+          for (const endpoint of endpoints) {
+            try {
+              const response = await fetch(endpoint, {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                  jsonrpc: '2.0',
+                  method: 'eth_getBlockByNumber',
+                  params: ['latest', false],
+                  id: 1
+                })
+              });
+
+              const data = await response.json();
+              
+              if (data.result && data.result.gasLimit) {
+                const gasLimit = parseInt(data.result.gasLimit, 16);
+                const gasLimitM = (gasLimit / 1000000).toFixed(1);
+                
+                // Update the display
+                document.getElementById('current-gas-limit').textContent = `${gasLimitM}M`;
+                
+                // Update remaining text based on current gas limit
+                const target = 60000000;
+                const remainingText = document.getElementById('remaining-text');
+                
+                if (gasLimit >= target) {
+                  remainingText.innerHTML = '🎉 <strong>Target achieved!</strong> The network has reached 60M gas limit.';
+                } else {
+                  const remainingM = ((target - gasLimit) / 1000000).toFixed(0);
+                  remainingText.innerHTML = `Only <strong>${remainingM}M</strong> more—every block you produce is a ballot.`;
+                }
+                
+                return gasLimit;
+              }
+            } catch (error) {
+              console.error(`Error with endpoint ${endpoint}:`, error);
+              continue;
+            }
+          }
+          
+          // If all endpoints fail
+          document.getElementById('current-gas-limit').textContent = 'Unable to load';
+        }
+
+        // Fetch gas limit on page load
+        fetchCurrentGasLimit();
+        
+        // Refresh every 30 seconds
+        setInterval(fetchCurrentGasLimit, 30000);
       </script>
 
 
