@@ -69,40 +69,31 @@
         or farcaster.
         Use the hashtag <a target="_blank"
           href="https://twitter.com/intent/post?text=I%20support%20raising%20the%20gas%20limit%20to%2040m%20%23pumpthegas%20https%3A%2F%2Fpumpthegas.org">#pumpthegas</a>
-        View the current state of gas limit signalling on <a target="_blank"
+      </p>
+      <p>View the current state of gas limit signalling on <a target="_blank"
           href="https://gaslimit.pics/">gaslimit.pics</a>
       </p>
 
-      <blockquote>
-        <p>configured my validator for a <strong>60M gas limit</strong> ⛽</p>
-        <ul>
-          <li>33% bump from 45M is safe pre-Fusaka</li>
-          <li>validators set the limit—vote with yours</li>
-          <li>instructions at PumpTheGas[.]org</li>
-        </ul>
-        <p>wen 1 gigagas/sec (10K TPS) on Ethereum L1?</p>
-        <ul>
-          <li>needs zkEVM proofs for consumer devices</li>
-          <li>Ethproofs call #2: real-time proving</li>
-          <li>Ethproofs call #3: gigagas L1</li>
-        </ul>
-        <p>believe in something</p>
-        <p><strong>Justin Drake</strong> <a href="https://x.com/drakefjustin/status/1920343548047569165"
-            target="_blank">on Twitter</a></p>
-      </blockquote>
+      <div style="display: flex; gap: 0; flex-wrap: wrap; align-items: stretch;">
+        <div style="flex: 1; min-width: 300px; margin-right: 2px; display: flex; flex-direction: column;">
+          <blockquote style="padding-left: 0px; padding-right: 2px; border-left: none; margin: 0; display: flex; flex-direction: column; flex: 1;">
+            <img src="images/jd-60m.png" alt="Justin Drake tweet about 60M gas limit" style="max-width: 100%; height: auto; display: block;" />
+            <p style="margin-top: auto;"><strong>Justin Drake</strong> <a href="https://x.com/drakefjustin/status/1920343548047569165"
+                target="_blank">on Twitter</a></p>
+          </blockquote>
+        </div>
+        <div style="flex: 1; min-width: 300px; margin-left: 2px; display: flex; flex-direction: column;">
+          <blockquote style="padding-left: 0px; padding-right: 2px; border-left: none; margin: 0; display: flex; flex-direction: column; flex: 1;">
+            <img src="images/dankrad-60m.png" alt="Dankrad Feist tweet about 60M gas limit" style="max-width: 100%; height: auto; display: block;" />
+            <p style="margin-top: auto;"><strong>Dankrad Feist</strong> <a href="https://x.com/dankrad/status/1863412876901306599"
+                target="_blank">on Twitter</a></p>
+          </blockquote>
+        </div>
+      </div>
 
-      <blockquote>
-        <p>I think it is time we increased the gas limit.</p>
-        <p>If you run a validator, you can contribute to this -- every block acts as a vote on whether to increase it. If more than 50% of the stake agrees to an increase, the gas limit will increase.</p>
-        <p>I just set my validators to vote for up to <strong>60m gas</strong>.</p>
-        <p><strong>Dankrad Feist</strong> <a href="https://x.com/dankrad/status/1863412876901306599"
-            target="_blank">on Twitter</a></p>
-      </blockquote>
-
-      <blockquote>
-        <p>100 million gas</p>
-        <p>#pumpthegas</p>
-        <p><strong>Mariano</strong> <a href="https://x.com/nanexcool/status/1920137540574543921" target="_blank">on Twitter</a></p>
+      <blockquote style="padding-left: 0px; border-left: none; margin: 0;">
+        <img src="images/mariano-100m.png" alt="Mariano tweet about 100 million gas" style="max-width: 60%; height: auto;" />
+        <p style="margin-top: 0em;"><strong>Mariano</strong> <a href="https://x.com/nanexcool/status/1920137540574543921" target="_blank">on Twitter</a></p>
       </blockquote>
 
       <a id="solo-stakers">
@@ -320,24 +311,28 @@
         </tr>
       </table>
 
-      <h3 id="header-3">What is the curent gas block limit?</h3>
+      <h3 id="header-3">What is the current gas block limit?</h3>
 
-      <p><code class="language-plaintext highlighter-rouge">45,000,000</code></p>
+      <p><code class="language-plaintext highlighter-rouge">60,000,000</code>, increased from 45 M on November 26, 2025</p>
 
-      <h3 id="header-3">What are we targetting for the new gas block limit?</h3>
+      <h3 id="header-3">What is the current recommendation for the gas block limit?</h3>
 
       <p><code class="language-plaintext highlighter-rouge">60,000,000</code></p>
 
-      <h3 id="header-3">Why this target specifically?</h3>
-      <p>After discussion with multiple community stakeholders, this feels like a reasonable amount to raise the limit
-        without putting the network at risk.</p>
+      <h3 id="header-3">Why this recommendation?</h3>
+      <p>This is based on <a target="_blank" href="https://www.nethermind.io/blog/measuring-ethereums-execution-limits-the-gas-benchmarking-framework">extensive benchmarking and testing</a>.</p>
+
+      <h3 id="header-3">What's our next target and how do we get there?</h3>
+
+      <p><code class="language-plaintext highlighter-rouge">100,000,000</code></p>
+      <p>This is a significant increase from the current 60 M and will depend on client optimizations and testing. Continuous pushing by the community for these optimizations helps Ethereum reach this target faster. It's possible that the next target will land somewhere between 60 and 100 M.</p>
 
       <h3 id="header-3">How does this help Ethereum?</h3>
       <p>Raising the gas block limit gives Layer 1 Ethereum the ability to process more transaction load in a
         day.
-        This has the potential to lower gas fees on L1. It's <a target="_blank"
+        This has the potential to lower gas fees on L1. Prior to recent raises, it was <a target="_blank"
           href="https://ethresear.ch/t/estimating-cryptocurrency-transaction-demand-elasticity-from-natural-experiments/2330">estimated</a>
-        this could reduce tx fees ~10-30%. </p>
+        that a shift from 45 to 60 M gas could reduce tx fees ~10-30%. </p>
 
       <h3 id="header-3">What about blobs?</h3>
       <p>Blobs (EIP-4844) help greatly reduce Layer 2 transaction fees, not Layer 1 transaction fees. A combination of
@@ -363,7 +358,7 @@
 
       <h3 id="header-3">How can I view the progress of this effort?</h3>
 
-      <p>You can view the latest blocks with a gas limit over 45M over at
+      <p>You can view the latest blocks with a gas limit at 60 M at
         <a target="_blank" href="https://api.blockchair.com/ethereum/blocks?q=gas_limit(45000001..100000000)&s=id(desc)">Blockchair.</a>
         You can also see a bar chart over at
         <a target="_blank" href="https://dune.com/queries/4359271/7316295">Dune.</a>
